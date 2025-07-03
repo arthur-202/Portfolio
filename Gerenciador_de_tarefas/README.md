@@ -1,4 +1,4 @@
-#Gerenciador de Tarefas em C
+Gerenciador de Tarefas em C
 
 Visão Geral
 ------------
@@ -15,34 +15,34 @@ Este programa de linha de comando em C permite gerenciar uma lista de tarefas co
 
 Estrutura do Projeto
 --------------------
-			src/
-				main.c       - Função principal (menu e controle de fluxo)
-				utils.h      - Declarações de tipos (Tarefa, Status), variáveis globais e protótipos
-				utils.c      - Implementação das funções de manipulação de tarefas
+	src/
+		main.c       - Função principal (menu e controle de fluxo)
+		utils.h      - Declarações de tipos (Tarefa, Status), variáveis globais e protótipos
+		utils.c      - Implementação das funções de manipulação de tarefas
 
 Descrição dos Arquivos
 ----------------------
-main.c
-		- Inclui headers necessários (<stdio.h>, <conio.h>, <windows.h>, "utils.h")
-		- Função main(): carrega tarefas, exibe menu em loop e chama funções conforme opção
-		- Uso de system("cls") para limpar tela, Sleep() para pausa e _getch() para aguardar tecla
+			main.c
+			- Inclui headers necessários (<stdio.h>, <conio.h>, <windows.h>, "utils.h")
+			- Função main(): carrega tarefas, exibe menu em loop e chama funções conforme opção
+			- Uso de system("cls") para limpar tela, Sleep() para pausa e _getch() para aguardar tecla
 
-utils.h
-		- Enum Status: PENDENTE, EM_ANDAMENTO, CONCLUIDA
-		- Struct Tarefa: id, Descricao[256], data (dia, mes, ano), status, prioridade, ponteiro next
-		- Variáveis globais: inicio (lista ligada), ultimo_id, nome_arquivo
-		- Protótipos das funções de manipulação
+			utils.h
+			- Enum Status: PENDENTE, EM_ANDAMENTO, CONCLUIDA
+			- Struct Tarefa: id, Descricao[256], data (dia, mes, ano), status, prioridade, ponteiro next
+			- Variáveis globais: inicio (lista ligada), ultimo_id, nome_arquivo
+			- Protótipos das funções de manipulação
 
-utils.c
-		- carregar_tarefas(): lê de tarefas.bin, reconstrói lista e atualiza ultimo_id
-		- salvar_tarefas(): grava lista atual em tarefas.bin
-		- exibir_menu(), ler_inteiro(): interface básica de interação
-		- status_texto(): converte enum para string
-		- cadastrar_tarefa(): entrada de dados e inserção no final da lista
-		- listar_tarefas(), listar_por_status(): exibição formatada das tarefas
-		- marcar_concluida(), editar_tarefa(), remover_tarefa(): operações CRUD básicas
-		- ordenar_tarefas(): bubble sort por data ou prioridade
-		- buscar_tarefas(): pesquisa simples por substring na descrição
+			utils.c
+			- carregar_tarefas(): lê de tarefas.bin, reconstrói lista e atualiza ultimo_id
+			- salvar_tarefas(): grava lista atual em tarefas.bin
+			- exibir_menu(), ler_inteiro(): interface básica de interação
+			- status_texto(): converte enum para string
+			- cadastrar_tarefa(): entrada de dados e inserção no final da lista
+			- listar_tarefas(), listar_por_status(): exibição formatada das tarefas
+			- marcar_concluida(), editar_tarefa(), remover_tarefa(): operações CRUD básicas
+			- ordenar_tarefas(): bubble sort por data ou prioridade
+			- buscar_tarefas(): pesquisa simples por substring na descrição
 
 Como Compilar
 -------------
@@ -74,10 +74,10 @@ Dependências
 
 Considerações
 --------------
-		- Arquivo de dados: `tarefas.bin` (binário)
-		- Se `tarefas.bin` não existir ao iniciar, o programa exibe mensagem e encerra.
-		- Uso de pausas (Sleep) para melhor experiência de usuário.
-		- Lista ligada simples para armazenar dinamicamente tarefas.
+	- Arquivo de dados: `tarefas.bin` (binário)
+	- Se `tarefas.bin` não existir ao iniciar, o programa exibe mensagem e encerra.
+	- Uso de pausas (Sleep) para melhor experiência de usuário.
+	- Lista ligada simples para armazenar dinamicamente tarefas.
 
 Licença e Copyright
 -------------------
