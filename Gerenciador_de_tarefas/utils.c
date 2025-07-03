@@ -1,37 +1,39 @@
 /**
  * @file utils.c
- * @brief Implementação de funções de gerenciamento de tarefas.
+ * @brief Implementacao de funcoes de gerenciamento de tarefas.
  * 
- * Este arquivo contém a implementação de um sistema de gerenciamento de tarefas
- * utilizando uma lista encadeada e persistência em arquivo binário.
+ * Este arquivo contem a implementacao de um sistema de gerenciamento de tarefas
+ * utilizando uma lista encadeada e persistencia em arquivo binario.
  */
 
 #include "utils.h"
+#include <windows.h> // apenas para 1 sleep
 
-// Variáveis globais
+// Variaveis globais
 Tarefa *inicio = NULL;   ///< Ponteiro para o primeiro elemento da lista de tarefas
-int ultimo_id = 0;       ///< Contador para geração de IDs únicos
+int ultimo_id = 0;       ///< Contador para geracao de IDs unicos
 const char *nome_arquivo = "tarefas.bin";   ///< Nome do arquivo de armazenamento
  
 /**
- * @brief Carrega tarefas do arquivo binário para a memória
+ * @brief Carrega tarefas do arquivo binario para a memoria
  * 
- * Lê o arquivo binário especificado e reconstrói a lista encadeada de tarefas.
+ * Le o arquivo binario especificado e reconstrói a lista encadeada de tarefas.
  * Atualiza o contador de IDs com o maior ID encontrado.
  * 
- * @return true se o carregamento foi bem-sucedido, false caso contrário
+ * @return true se o carregamento foi bem-sucedido, false caso contrario
  */
 bool carregar_tarefas(void) {
     FILE *arq = fopen(nome_arquivo, "rb");
     if (!arq) {
-        printf("O arquivo %s não existe!\nVOCÊ PRECISA CRIÁ-LO ANTES DE EXECUTAR O PROGRAMA!\n", nome_arquivo);
+        printf("O arquivo %s nao existe!\n como sou bonzinho, vou criá-lo para você!\n", nome_arquivo);
+	Sleep(3000);
         return false;
     }
     Tarefa temp;
     while (fread(&temp, sizeof(Tarefa), 1, arq)) {
         Tarefa *nova = malloc(sizeof(Tarefa));
         if (!nova) {
-            printf("Erro de alocação de memória!\n");
+            printf("Erro de alocacao de memoria!\n");
             fclose(arq);
             return false;
         }
@@ -45,9 +47,9 @@ bool carregar_tarefas(void) {
 }
 
 /**
- * @brief Salva todas as tarefas da memória em arquivo binário
+ * @brief Salva todas as tarefas da memoria em arquivo binario
  * 
- * Escreve toda a lista encadeada de tarefas no arquivo binário especificado.
+ * Escreve toda a lista encadeada de tarefas no arquivo binario especificado.
  */
 void salvar_tarefas(void) {
     FILE *arquivo = fopen(nome_arquivo, "wb");
@@ -64,25 +66,25 @@ void salvar_tarefas(void) {
 }
 
 /**
- * @brief Exibe o menu principal de opções
+ * @brief Exibe o menu principal de opcoes
  * 
- * Mostra as operações disponíveis para o usuário.
+ * Mostra as operacoes disponiveis para o usuario.
  */
 void exibir_menu(void) {
     printf("1. Nova tarefa\n");
     printf("2. Listar todas\n");
     printf("3. Listar por status\n");
-    printf("4. Marcar concluída\n");
+    printf("4. Marcar concluida\n");
     printf("5. Editar tarefa\n");
     printf("6. Remover tarefa\n");
     printf("7. Ordenar tarefas\n");
     printf("8. Buscar tarefas\n");
     printf("9. Salvar e sair\n");
-    printf("Escolha uma opção: ");
+    printf("Escolha uma opcao: ");
 }
 
 /**
- * @brief Lê um valor inteiro da entrada padrão
+ * @brief Le um valor inteiro da entrada padrao
  * 
  * @return O inteiro lido do teclado
  */
@@ -93,7 +95,7 @@ int ler_inteiro(void) {
 }
 
 /**
- * @brief Converte um valor de enumeração Status para string
+ * @brief Converte um valor de enumeracao Status para string
  * 
  * @param s Valor de status a ser convertido
  * @return String correspondente ao status
@@ -102,25 +104,25 @@ const char* status_texto(Status s) {
     switch (s) {
         case PENDENTE: return "Pendente";
         case EM_ANDAMENTO: return "Em Andamento";
-        case CONCLUIDA: return "Concluída";
+        case CONCLUIDA: return "Concluida";
         default: return "Desconhecido";
     }
 }
 
 /**
- * @brief Adiciona uma nova tarefa à lista
+ * @brief Adiciona uma nova tarefa a lista
  * 
- * Solicita os dados da tarefa ao usuário, gera um ID único,
+ * Solicita os dados da tarefa ao usuario, gera um ID unico,
  * e insere a nova tarefa no final da lista.
  */
 void cadastrar_tarefa(void) {
     Tarefa *t = malloc(sizeof(Tarefa));
     if (!t) {
-        printf("Erro ao alocar memória para nova tarefa.\n");
+        printf("Erro ao alocar memoria para nova tarefa.\n");
         return;
     }
     t->id = ++ultimo_id;
-    printf("Descrição: ");
+    printf("Descricao: ");
     scanf(" %[^\n]", t->Descricao);
     printf("Data limite (DD MM AAAA): ");
     scanf("%d %d %d", &t->dia, &t->mes, &t->ano);
@@ -144,7 +146,7 @@ void cadastrar_tarefa(void) {
  * @brief Lista todas as tarefas cadastradas
  * 
  * Exibe no console todas as tarefas da lista em ordem inversa
- * à de cadastro (do mais recente para o mais antigo).
+ * a de cadastro (do mais recente para o mais antigo).
  */
 void listar_tarefas(void) {
     if (!inicio) {
@@ -163,7 +165,7 @@ void listar_tarefas(void) {
 /**
  * @brief Lista tarefas por status
  * 
- * Solicita um status ao usuário e exibe todas as tarefas
+ * Solicita um status ao usuario e exibe todas as tarefas
  * que possuem o status correspondente.
  */
 void listar_por_status(void) {
@@ -186,29 +188,29 @@ void listar_por_status(void) {
 }
 
 /**
- * @brief Altera o status de uma tarefa para "Concluída"
+ * @brief Altera o status de uma tarefa para "Concluida"
  * 
  * Solicita o ID da tarefa e atualiza seu status para CONCLUIDA.
  */
 void marcar_concluida(void) {
-    printf("ID da tarefa a marcar como concluída: ");
+    printf("ID da tarefa a marcar como concluida: ");
     int id = ler_inteiro();
     Tarefa *t = inicio;
     while (t) {
         if (t->id == id) {
             t->status = CONCLUIDA;
-            printf("Tarefa marcada como concluída.\n");
+            printf("Tarefa marcada como concluida.\n");
             return;
         }
         t = t->proxima;
     }
-    printf("ID não encontrado.\n");
+    printf("ID nao encontrado.\n");
 }
 
 /**
  * @brief Edita os dados de uma tarefa existente
  * 
- * Solicita o ID da tarefa e permite editar sua descrição,
+ * Solicita o ID da tarefa e permite editar sua descricao,
  * data limite, prioridade e status.
  */
 void editar_tarefa(void) {
@@ -217,7 +219,7 @@ void editar_tarefa(void) {
     Tarefa *t = inicio;
     while (t) {
         if (t->id == id) {
-            printf("Nova descrição: ");
+            printf("Nova descricao: ");
             scanf(" %[^\n]", t->Descricao);
             printf("Nova data (DD MM AAAA): ");
             scanf("%d %d %d", &t->dia, &t->mes, &t->ano);
@@ -233,7 +235,7 @@ void editar_tarefa(void) {
         }
         t = t->proxima;
     }
-    printf("ID não encontrado.\n");
+    printf("ID nao encontrado.\n");
 }
 
 /**
@@ -242,9 +244,8 @@ void editar_tarefa(void) {
  * Lista todas as tarefas, solicita um ID e remove a tarefa correspondente.
  */
 void remover_tarefa(void) {
-		system("clear");
-		
-		listar_tarefas();
+    system("cls");
+    listar_tarefas();
     printf("ID da tarefa a remover: ");
     int id = ler_inteiro();
     Tarefa *t = inicio;
@@ -263,13 +264,13 @@ void remover_tarefa(void) {
         ant = t;
         t = t->proxima;
     }
-    printf("ID não encontrado.\n");
+    printf("ID nao encontrado.\n");
 }
 
 /**
  * @brief Ordena as tarefas da lista
  * 
- * Ordena as tarefas por data de entrega (cronológica) ou
+ * Ordena as tarefas por data de entrega (cronologica) ou
  * prioridade (decrescente) usando algoritmo bubble sort.
  */
 void ordenar_tarefas(void) {
@@ -311,10 +312,10 @@ void ordenar_tarefas(void) {
 }
 
 /**
- * @brief Busca tarefas por palavra-chave na descrição
+ * @brief Busca tarefas por palavra-chave na descricao
  * 
  * Solicita uma palavra-chave e exibe todas as tarefas cuja
- * descrição contém o termo pesquisado (case-sensitive).
+ * descricao contem o termo pesquisado (case-sensitive).
  */
 void buscar_tarefas(void) {
     char key[256];
@@ -335,4 +336,3 @@ void buscar_tarefas(void) {
         printf("Nenhuma tarefa encontrada com essa palavra-chave.\n");
     }
 }
-
