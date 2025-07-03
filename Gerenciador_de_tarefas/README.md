@@ -1,17 +1,18 @@
-Gerenciador de Tarefas em C
+
 
 Visão Geral
 ------------
-Este programa de linha de comando em C permite gerenciar uma lista de tarefas com as seguintes operações:
-		- Carregar e salvar tarefas em arquivo binário
-		- Cadastrar nova tarefa
-		- Listar todas as tarefas ou por status
-		- Marcar tarefa como concluída
-		- Editar dados da tarefa (descrição, data, prioridade, status)
-		- Remover tarefa
-		- Ordenar tarefas por data ou prioridade
-		- Buscar tarefas por palavra-chave
-		- Menu interativo e feedback imediato ao usuário
+# Este programa de linha de comando em C permite gerenciar uma lista de tarefas com as seguintes operações:
+
+	- Carregar e salvar tarefas em arquivo binário
+	- Cadastrar nova tarefa
+	- Listar todas as tarefas ou por status
+	- Marcar tarefa como concluída
+	- Editar dados da tarefa (descrição, data, prioridade, status)
+	- Remover tarefa
+	- Ordenar tarefas por data ou prioridade
+	- Buscar tarefas por palavra-chave
+	- Menu interativo e feedback imediato ao usuário
 
 Estrutura do Projeto
 --------------------
