@@ -84,3 +84,8 @@ Licença e Copyright
 -------------------
 © 2025 Arthur Pereira Tavares. Todos os direitos reservados.
 Utilização permitida para estudos e projetos pessoais.
+
+## Colaboração
+
+**Dr. Eanes Pereira Torres**  
+[https://linkr.bio/eanes.t.pereira](https://linkr.bio/eanes.t.pereira)
