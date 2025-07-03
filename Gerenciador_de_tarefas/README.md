@@ -1,8 +1,9 @@
 
 
-Visão Geral
+#Visão Geral
 ------------
-# Este programa de linha de comando em C permite gerenciar uma lista de tarefas com as seguintes operações:
+Este programa de linha de comando em C permite gerenciar uma lista de tarefas com as seguintes operações:
+------------
 
 	- Carregar e salvar tarefas em arquivo binário
 	- Cadastrar nova tarefa
