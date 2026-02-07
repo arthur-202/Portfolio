@@ -106,5 +106,5 @@ O uso da Curva ROC evidenciou o trade-off entre:
 
 ### Clonar o repositório
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/arthur-202/Portfolio/tree/main/Detector_Fraudes_ML)
 
