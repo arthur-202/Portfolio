@@ -7,4 +7,4 @@ Sou estudante de Ciência da Computação na UFCG com experiência prática em a
 
 ## Contato
 - GitHub: ([https://github.com/arthur-202](https://github.com/arthur-202/))
-- LinkedIn: ([https://linkedin.com/in/seulink](https://www.linkedin.com/in/arthur2005/))
+- LinkedIn: ([arthur2005](https://www.linkedin.com/in/arthur2005/))
